@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Role Number</title>
+</head>
+<body>
+    <form action="/dice-roll/{roll}" method="post">
+        <h1>Your Role is<span th:text="${role}">World</span></h1>
+    </form>
+</body>
+</html>
