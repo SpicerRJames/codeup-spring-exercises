@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dice Roll</title>
+</head>
+<body>
+
+<div th:fragment="roll-guess">
+    <form method="post" action="/role-guess">
+        <label>Choose 1 - 6</label>
+        <button name="guess"></button>
+    </form>
+
+</div>
+
+</body>
+</html>

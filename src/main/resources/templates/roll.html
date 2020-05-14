@@ -5,8 +5,18 @@
     <title>Role Number</title>
 </head>
 <body>
-    <form action="/dice-roll/{roll}" method="post">
-        <h1>Your Role is<span th:text="${role}">World</span></h1>
-    </form>
+<!--    //<form action="/dice-roll/{roll}" method="post">-->
+        <h1>Your Roll is <span th:text="${roll}"> </span></h1>
+        <h1>Random roll was <span th:text="${guess}"></span> </h1>
+
+        <div class="alert" th:if="${correctGuess}">
+            <p>Your guess was correct!</p>
+        </div>
+
+        <div class="alert" th:unless="${correctGuess}">
+            <p>Your guess was incorrect!</p>
+        </div>
+
+<!--    //</form>-->
 </body>
 </html>

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -9,9 +11,9 @@
 
 <div class="container">
     <h2>Create Ad</h2>
-    <form action="/dice-roll" method="post">
+    <form action="/dice-roll/" method="post">
         <label for="roll">Roll Dice: </label>
-        <button type="button" name="roll" id="roll" class="field" th:value="true">CLICK HERE TO ROLL</button>
+        <input type="button" name="roll" id="roll" class="field" />CLICK HERE TO ROLL
         <br><br>
     </form>
 </div>
