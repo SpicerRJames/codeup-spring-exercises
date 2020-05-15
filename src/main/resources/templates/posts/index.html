@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <div th:replace="partials/partials :: head" />
+</head>
+<body>
+<div th:replace="partials/partials :: top_banner"></div>
+<div th:replace="partials/partials :: standard_nav"></div>
+
+<div class="container">
+    <h2>Recent Blog Post</h2>
+    <br>
+    <ul>
+        <div th:each="post : ${posts}">
+            <li><a th:href="@{'/posts/'+${post.id}}"><h3 style="font-weight: bold" th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></h3></a>
+                <p style="padding-left: 2rem;" th:text="${post.getDescription()}"></p></tr>
+                <br></li>
+        </div>
+    </ul>
+</div>
+<div th:replace="partials/partials :: footer_nav"></div>
+<div th:replace="partials/partials :: footer"></div>
+
+</body>
+</html>

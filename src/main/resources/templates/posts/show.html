@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <div th:replace="partials/partials :: head" />
+</head>
+<body>
+<div th:replace="partials/partials :: top_banner"></div>
+<div th:replace="partials/partials :: standard_nav"></div>
+
+<div class="container">
+    <h2>View Post</h2>
+    <br>
+    <span style="font-weight: bold" th:text="${post.getTitle()}"></span><br>
+    <span style="padding-left: 2rem;" th:text="${post.getDescription()}"></span>
+    <a th:href="@{'/posts/'+${post.id}+'/edit'}">Edit Post</a>
+    <!--    <button id="deletebutton">Delete Post</button>-->
+    <a th:href="@{'/posts/'+${post.id}+'/delete'}">Delete Post</a>
+</div>
+<div th:replace="partials/partials :: footer_nav"></div>
+<div th:replace="partials/partials :: footer"></div>
+</body>
+</html>

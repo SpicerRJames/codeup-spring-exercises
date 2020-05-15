@@ -1,4 +1,4 @@
-package com.codeup.springblogapp;
+package com.codeup.springblogapp.repositories;
 
 import com.codeup.springblogapp.model.AdBean;
 import org.springframework.data.jpa.repository.JpaRepository;

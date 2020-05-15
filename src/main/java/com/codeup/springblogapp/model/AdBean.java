@@ -16,4 +16,8 @@ public class AdBean {
     @Column(nullable = false)
     private String description;
 
+//    public AdBean(String description, String title) {
+//        this.description = description;
+//        this.title= title;
+//    }
 }

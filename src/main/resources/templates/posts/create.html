@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="partials/partials :: head"></div>
+
+</head>
+<div th:replace="partials/partials :: top_banner"></div>
+<div th:replace="partials/partials :: standard_nav"></div>
+<body>
+<div class="container">
+    <h1>Create Post</h1>
+<!--    <form th:action="@{/posts/create}" th:method="POST">-->
+<!--        <label for="title">Title</label>-->
+<!--        <input id="title" type="text" name="title" th:value="title" placeholder="Enter Title">-->
+<!--        <label for="description">Description</label>-->
+<!--        <input id="description" name="description" th:text="description" placeholder="Enter Description">-->
+<!--        <button type="submit">Create Post</button>-->
+<!--    </form>-->
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        Title:
+        <input th:field="*{title}" />
+        <br />
+        Description:
+        <input th:field="*{description}" />
+        <br />
+        <input type="submit" />
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.codeup.springblogapp;
+package com.codeup.springblogapp.controllers;
 
 import com.codeup.springblogapp.model.Dice;
 import org.springframework.stereotype.Controller;

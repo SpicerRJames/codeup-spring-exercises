@@ -1,4 +1,4 @@
-package com.codeup.springblogapp;
+package com.codeup.springblogapp.controllers;
 
 import com.codeup.springblogapp.model.Ad;
 import com.codeup.springblogapp.model.Dice;
@@ -26,7 +26,7 @@ public class RollDice{
     public String rollClick(@PathVariable int roll, Model model) {
 
         int max = 6;
-        int min = 1;
+        //int min = 1;
         //Math.random = 0.1 and 0.99999
         //.1 * 6 = 0.6
         //.999 * 6 = 5.994
