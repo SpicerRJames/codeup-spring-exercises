@@ -167,6 +167,7 @@ import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
 import com.codeup.springblogapp.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -202,7 +203,9 @@ public class PostExerciseController {
 
     @GetMapping("/posts/create")
     public String createPost(Model model) {
-        User user = userDao.getOne(1L);
+//        User user = userDao.getOne(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getEmail());
         Post post = new Post();
         post.setUser(user);
         model.addAttribute("post", post);
