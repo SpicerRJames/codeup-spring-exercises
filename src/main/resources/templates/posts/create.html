@@ -19,6 +19,7 @@
 <!--        <button type="submit">Create Post</button>-->
 <!--    </form>-->
     <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        <input type="hidden" th:field="*{id}">
         Title:
         <input th:field="*{title}" />
         <br />
@@ -26,6 +27,8 @@
         <input th:field="*{description}" />
         <br />
         <input type="submit" />
+        <label for="desc">Description:</label><br>
+        <textarea th:field="*{description}" id="desc" class="field" rows="4" cols="50"></textarea><br>
     </form>
 
 </div>
