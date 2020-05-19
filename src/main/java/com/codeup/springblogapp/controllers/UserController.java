@@ -30,13 +30,6 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         users.save(user);
-//        return "redirect:/login";
-        return "redirect:/prfile";
-    }
-
-    @GetMapping("/profile")
-    public String loginPage(){
-
-        return"users/profile";
+        return "redirect:/login";
     }
 }

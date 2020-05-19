@@ -15,6 +15,15 @@ public class HelloController {
     public String hello(){
         return "index page";
     }
+
+    @GetMapping("/hello/{name}")
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
+    }
+
+}
+
 //
 //    @GetMapping("/hello")
 //    @ResponseBody
@@ -42,11 +51,3 @@ public class HelloController {
 //    public String welcome() {
 //        return "home";
 //    }
-
-    @GetMapping("/hello/{name}")
-    public String sayHello(@PathVariable String name, Model model) {
-        model.addAttribute("name", name);
-        return "hello";
-    }
-
-}

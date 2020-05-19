@@ -1,6 +1,6 @@
-package com.codeup.springblogapp.model;
-
-public class Dice {
+//package com.codeup.springblogapp.model;
+//
+//public class Dice {
 
 //    boolean roll;
 //
@@ -24,7 +24,7 @@ public class Dice {
 //        return roll;
 //    }
 
-    public int die;
-    public String result;
-
-}
+//    public int die;
+//    public String result;
+//
+//}
