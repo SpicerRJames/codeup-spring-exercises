@@ -16,8 +16,8 @@
     <br>
     <h1 th:value="${post.title}"></h1>
     <form th:action="@{'/posts/' + ${post.id} + '/edit'}" method="post">
-        <input type="text" id="title" name="title" th:value="${post.title}">Title</input>
-        <input type="text" id="description" name="description" th:value="${post.description}">Description</input>
+        <input type="text" id="title" name="title" th:value="${post.title}">edited title</input>
+        <input type="text" id="description" name="description" th:value="${post.body}">edited description</input>
         <button type="submit">Enter</button>
     </form>
     <br>

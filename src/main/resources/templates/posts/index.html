@@ -15,7 +15,7 @@
     <ul>
         <div th:each="post : ${posts}">
             <li><a th:href="@{'/posts/'+${post.id}}"><h3 style="font-weight: bold" th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></h3></a>
-                <p style="padding-left: 2rem;" th:text="${post.getDescription()}"></p></tr>
+                <p style="padding-left: 2rem;" th:text="${post.getBody()}"></p></tr>
                 <br></li>
         </div>
     </ul>

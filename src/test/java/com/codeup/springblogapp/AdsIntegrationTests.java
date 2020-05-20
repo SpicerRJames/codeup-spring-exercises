@@ -1,8 +1,10 @@
 package com.codeup.springblogapp;
 
 import com.codeup.springblogapp.model.Ad;
+import com.codeup.springblogapp.model.Post;
 import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.AdRepository;
+import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +46,9 @@ public class AdsIntegrationTests {
     AdRepository adsDao;
 
     @Autowired
+    PostRepository postRepo;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Before
@@ -65,23 +70,35 @@ public class AdsIntegrationTests {
                 .param("username", "test")
                 .param("password", "aaaa"))
                 .andExpect(status().is(HttpStatus.FOUND.value()))
-                .andExpect(redirectedUrl("/ads"))
+                .andExpect(redirectedUrl("/posts"))
                 .andReturn()
                 .getRequest()
                 .getSession();
     }
 
-    @Test
-    public void testShowAd() throws Exception {
+//    @Test
+//    public void testShowAd() throws Exception {
+//
+//        Ad existingAd = adsDao.findAll().get(0);
+//
+//        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
+//        this.mvc.perform(get("/ads/" + existingAd.getId()))
+//                .andExpect(status().isOk())
+//                // Test the dynamic content of the page
+//                .andExpect(content().string(containsString(existingAd.getDescription())));
+//    }
 
-        Ad existingAd = adsDao.findAll().get(0);
-
-        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
-        this.mvc.perform(get("/ads/" + existingAd.getId()))
-                .andExpect(status().isOk())
-                // Test the dynamic content of the page
-                .andExpect(content().string(containsString(existingAd.getDescription())));
-    }
+//    @Test
+//    public void testShowPost() throws Exception {
+//
+//        Post existingPost = postRepo.findAll().get(0);
+//
+//        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
+//        this.mvc.perform(get("/posts/" + existingPost.getId()))
+//                .andExpect(status().isOk())
+//                // Test the dynamic content of the page
+//                .andExpect(content().string(containsString(existingPost.getBody())));
+//    }
 //
 //
 //    @Test
@@ -97,15 +114,85 @@ public class AdsIntegrationTests {
 //                .andExpect(content().string(containsString(existingAd.getTitle())));
 //    }
 
+    @Test
+    public void testCreateAd() throws Exception {
+        // Makes a Post request to /ads/create and expect a redirection to the Ad
+        this.mvc.perform(
+                post("/posts/create").with(csrf())
+                        .session((MockHttpSession) httpSession)
+                        // Add all the required parameters to your request like this
+                        .param("title", "test")
+                        .param("body", "for sale"))
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    public void testShowAd() throws Exception {
+
+        Post existingPost = postRepo.findAll().get(0);
+
+        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
+                .andExpect(status().isOk())
+                // Test the dynamic content of the page
+                .andExpect(content().string(containsString(existingPost.getBody())));
+    }
+
+    @Test
+    public void testPostIndex() throws Exception {
+        Post existingPost = postRepo.findAll().get(0);
+
+        // Makes a Get request to /ads and verifies that we get some of the static text of the ads/index.html template and at least the title from the first Ad is present in the template.
+        this.mvc.perform(get("/posts"))
+                .andExpect(status().isOk())
+                // Test the static content of the page
+                .andExpect(content().string(containsString("Recent Blog Post")))
+                // Test the dynamic content of the page
+                .andExpect(content().string(containsString(existingPost.getTitle())));
+    }
+
 //    @Test
-//    public void testCreateAd() throws Exception {
-//        // Makes a Post request to /ads/create and expect a redirection to the Ad
+//    public void testEditPost() throws Exception {
+//        // Gets the first Ad for tests purposes
+////        Ad existingAd = adsDao.findAll().get(0);
+//        Post existingPost = postRepo.findAll().get(0);
+//
+//        // Makes a Post request to /ads/{id}/edit and expect a redirection to the Ad show page
 //        this.mvc.perform(
-//                post("/ads/create").with(csrf())
+//                post("/posts/" + existingPost.getId() + "/edit").with(csrf())
 //                        .session((MockHttpSession) httpSession)
-//                        // Add all the required parameters to your request like this
-//                        .param("title", "test")
-//                        .param("description", "for sale"))
+//                        .param("title", "edited title")
+//                        .param("description", "edited description"))
 //                .andExpect(status().is3xxRedirection());
+//
+//        // Makes a GET request to /ads/{id} and expect a redirection to the Ad show page
+//        this.mvc.perform(get("/posts/" + existingPost.getId()))
+//                .andExpect(status().isOk())
+//                // Test the dynamic content of the page
+//                .andExpect(content().string(containsString("edited title")))
+//                .andExpect(content().string(containsString("edited description")));
 //    }
+
+    @Test
+    public void testDeleteAd() throws Exception {
+        // Creates a test Ad to be deleted
+        this.mvc.perform(
+                post("/posts/create").with(csrf())
+                        .session((MockHttpSession) httpSession)
+                        .param("title", "ad to be deleted1")
+                        .param("description", "won't last long"))
+                .andExpect(status().is3xxRedirection());
+
+        // Get the recent Ad that matches the title
+//        Ad existingAd = adsDao.findByTitle("ad to be deleted");
+        Post existingPost = postRepo.findByTitle("ad to be deleted1");
+
+        // Makes a Post request to /ads/{id}/delete and expect a redirection to the Ads index
+        this.mvc.perform(
+                post("/posts/" + existingPost.getId() + "/delete").with(csrf())
+                        .session((MockHttpSession) httpSession)
+                        .param("id", String.valueOf(existingPost.getId())))
+                .andExpect(status().is3xxRedirection());
+    }
+
 }
