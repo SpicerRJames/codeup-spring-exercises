@@ -16,6 +16,12 @@ public class HelloController {
         return "partials/home";
     }
 
+    @GetMapping("/home")
+//    @ResponseBody
+    public String homePage(){
+        return "partials/home";
+    }
+
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable String name, Model model) {
         model.addAttribute("name", name);

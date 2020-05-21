@@ -32,6 +32,7 @@ public class PostExerciseController {
         return "posts/index";
     }
 
+
     @GetMapping("/posts/{id}")
     public String showAnIndividualPost(@PathVariable long id, Model model) {
         Post thisPost = postDao.getOne(id); // using JpaRepository.getOne, but for our Post objects

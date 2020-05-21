@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Ad List</title>
-<!--    <div th:replace="partials/partials :: header"/>-->
+    <div th:replace="partials/partials :: head"></div>
 </head>
+<div th:replace="partials/partials :: top_banner"></div>
+<div th:replace="partials/partials :: standard_nav"></div>
 <body>
-<!--<nav th:replace="partials/partials :: navbar"/>-->
 
 <div class="container">
     <h2>Ad List</h2>
@@ -18,4 +19,9 @@
 
 
 </body>
+<style>
+    body{
+        background-color: #20c997;
+    }
+</style>
 </html>
