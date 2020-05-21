@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
 
     @GetMapping("/")
-    @ResponseBody
+//    @ResponseBody
     public String hello(){
-        return "index page";
+        return "partials/home";
     }
 
     @GetMapping("/hello/{name}")

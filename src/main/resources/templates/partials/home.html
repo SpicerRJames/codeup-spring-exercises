@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <div th:replace="partials/partials :: head"></div>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
+<div th:replace="partials/partials :: top_banner"></div>
+<div th:replace="partials/partials :: standard_nav"></div>
 <body>
+
+<!--<div class="form-group" id="spooky">-->
+<!--    <div>-->
+        <div class="row h-100 justify-content-center align-items-center">
+            <img src="/img/spooky-holder-image.png" alt="https://via.placeholder.com/150">
+<!--            class="img-fluid"-->
+        </div>
+<!--    </div>-->
+<!--</div>-->
+
+<div >
+    <h2>
+        Hello! My name is James Spicer! And welcome to myweb page!
+    </h2>
+</div>
 
 </body>
 </html>
